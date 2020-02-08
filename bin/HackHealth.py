@@ -2,6 +2,8 @@ import pandas as pd
 import NutritionalConstants
 from fuzzywuzzy import fuzz
 
+current_day = 1
+
 def find_actual_food(food_input):
     scores = []
     maximum = -1
@@ -36,15 +38,15 @@ def add_item():
     print(actual_food + " added!")
 
 def create_tracking_file():
-    data = {"calories": [0],
+    data = {"Calories": [0],
             "Carb (g)": [0],
             "Fat (g)": [0],
-            "Protein(g)": [0],
+            "Protein (g)": [0],
             "A": [0],
-            "C(mg)": [0],
+            "C": [0],
             "E": [0],
             "K": [0],
-            "sugar(g)": [0]
+            "Sugar (g)": [0]
             }
     df = pd.DataFrame(data)
     df.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
@@ -58,11 +60,13 @@ except FileNotFoundError:
     tracking_data = create_tracking_file()
 
 while (True):
+    df = pd.DataFrame([[1, 0, 0, 0, 0, 0, 0, 0, 0, 0]], columns = ['Day', 'Calories', 'Carb (g)', 'Fat (g)', 'Protein (g)', 'A', 'C', 'E', 'K', 'Sugar (g)'])
+    df.to_excel("tracking.xlsx")
     print("Please select an option:")
     print("A. List all available foods.")
     print("B. Add additional item to today.")
     print("C. See current status.")
-    print("D. Advance to next day.")
+    print("D. Save and advance to next day.")
     print("Q. Terminate program.\n")
     answer = input("Selection: ").lower()
     print()
@@ -70,14 +74,15 @@ while (True):
     if answer == 'a':
         for index, name in enumerate(food_data['Food']):
             print(name)
-        print()
     elif answer == 'b':
         add_item()
     elif answer == 'c':
         break
     elif answer == 'd':
-        break
+        current_day += 1
+        print("Day advanced to " + str(current_day) + ".")
     elif answer == 'q':
         break
     else:
-        print("Invalid command. Please enter another.\n")
+        print("Invalid command. Please enter another.")
+    print()
