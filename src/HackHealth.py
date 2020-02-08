@@ -16,18 +16,21 @@ class HackHealth:
     
     def find_actual_food(self, food_input):
         scores = []
-        minimum = -1
+        maximum = -1
         for index, food_actual in enumerate(self.food_data['Food']):
-            scores[index] = (food_actual, Core.stringCompare[food_input, food_actual])
+            scores[index] = (food_actual, fuzz.ratio[food_input, food_actual])
         for score in scores:
-            if score[1] < minimum or score[1] == -1:
-                minimum = score
+            if score[1] > maximum:
+                maximum = score
                 result = score[0]
         return result
     
     def calculate_nutritional_information(self, food, servings):
-        nutritional_information = self.food_data.loc[self.food_data['Food'] == 'apple'].loc[0]
-    
+        nutritional_information = self.food_data.loc[self.food_data['Food'] == food].loc[0]
+        for index, nutrition in enumerate(nutritional_information):
+            nutritional_information[index] = nutrition * servings
+        return nutritional_information
+        
     while (True):
         print("Please select an option:")
         print("A. List all available foods.")
