@@ -1,4 +1,4 @@
-protected NutritionalValues {
+public class NutritionalConstants {
 	public static final double CARBOHYDRATES = 130;
 	public static final double FAT = null;
 	public static final double FIBER = 38;
