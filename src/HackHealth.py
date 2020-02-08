@@ -6,17 +6,19 @@ def find_actual_food(food_input):
     scores = []
     maximum = -1
     for index, food_actual in enumerate(food_data['Food']):
-        scores.append(fuzz.ratio(food_input, food_actual))
+        scores.append((food_actual, fuzz.ratio(food_input, food_actual)))
     for score in scores:
         if score[1] > maximum:
-            maximum = score
+            maximum = score[1]
             result = score[0]
+    print('found food ' + result)
     return result
 
 def calculate_nutritional_information(food, servings):
-    nutritional_information = food_data.loc[food_data['Food'] == food].loc[0][-1]
+    nutritional_information = food_data.loc[food_data['Food'] == food].iloc[0][1:-1]
     for index, nutrition in enumerate(nutritional_information):
         nutritional_information[index] = nutrition * servings
+    print('finished calculating nutritional info')
     return nutritional_information
 
 def track_data(food_nutrition_value):
@@ -28,7 +30,7 @@ def track_data(food_nutrition_value):
 def add_item():
     food = input("What food would you like to add? ")
     actual_food = find_actual_food(food)
-    servings = input("How many servings did you have? ")
+    servings = int(input("How many servings did you have? "))
     food_nutrition_value = calculate_nutritional_information(actual_food, servings)
     track_data(food_nutrition_value)
     print(actual_food + " added!")
