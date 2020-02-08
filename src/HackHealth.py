@@ -101,6 +101,7 @@ while (True):
         tracking_data.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
         print("Day advanced to " + str(current_day) + ".")
     elif answer == 'q':
+        tracking_data.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
         break
     else:
         print("Invalid command. Please enter another.")
