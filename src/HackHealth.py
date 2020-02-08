@@ -4,6 +4,17 @@ from fuzzywuzzy import fuzz
 
 current_day = 1
 
+def add_item():
+    is_correct_food = False
+    while (not is_correct_food):
+        food = input("What food would you like to add? ")
+        actual_food = find_actual_food(food)
+        is_correct_food = (input("Is this the correct food? Enter yes or no: ").lower() == 'yes')
+    servings = int(input("How many servings did you have? "))
+    food_nutrition_value = calculate_nutritional_information(actual_food, servings)
+    track_data(food_nutrition_value)
+    print(actual_food + " added!")
+
 def find_actual_food(food_input):
     scores = []
     maximum = -1
@@ -28,14 +39,6 @@ def track_data(food_nutrition_value):
     for index, nutrition_value in enumerate(food_nutrition_value):
         todays_nutrition_count[index] += nutrition_value
     tracking_data.iloc[-1] = todays_nutrition_count
-
-def add_item():
-    food = input("What food would you like to add? ")
-    actual_food = find_actual_food(food)
-    servings = int(input("How many servings did you have? "))
-    food_nutrition_value = calculate_nutritional_information(actual_food, servings)
-    track_data(food_nutrition_value)
-    print(actual_food + " added!")
 
 def create_tracking_file():
     data = {"Calories": [0],
