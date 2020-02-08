@@ -2,7 +2,6 @@ import pandas as pd
 import NutritionalConstants
 from fuzzywuzzy import fuzz
 
-current_day = 1
 
 def add_item():
     is_correct_food = False
@@ -37,11 +36,12 @@ def calculate_nutritional_information(food, servings):
 def track_data(food_nutrition_value):
     todays_nutrition_count = tracking_data.iloc[-1]
     for index, nutrition_value in enumerate(food_nutrition_value):
-        todays_nutrition_count[index] += nutrition_value
+        todays_nutrition_count[index + 1] += nutrition_value
     tracking_data.iloc[-1] = todays_nutrition_count
 
 def create_tracking_file():
-    data = {"Calories": [0],
+    data = {"Day": [1],
+            "Calories": [0],
             "Carb (g)": [0],
             "Fat (g)": [0],
             "Protein (g)": [0],
@@ -55,6 +55,20 @@ def create_tracking_file():
     df.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
     return df
 
+def create_new_row():
+    new_row = {"Day": current_day,
+               "Calories": 0,
+               "Carb (g)": 0,
+               "Fat (g)": 0,
+               "Protein (g)": 0,
+               "A": 0,
+               "C": 0,
+               "E": 0,
+               "K": 0,
+               "Sugar (g)": 0
+               }
+    return tracking_data.append(new_row, ignore_index=True)
+    print(tracking_data)
 
 food_data = pd.read_excel("food_data.xlsx")
 try:
@@ -62,9 +76,9 @@ try:
 except FileNotFoundError:
     tracking_data = create_tracking_file()
 
+current_day = tracking_data.iloc[-1][0]
+
 while (True):
-    df = pd.DataFrame([[1, 0, 0, 0, 0, 0, 0, 0, 0, 0]], columns = ['Day', 'Calories', 'Carb (g)', 'Fat (g)', 'Protein (g)', 'A', 'C', 'E', 'K', 'Sugar (g)'])
-    df.to_excel("tracking.xlsx")
     print("Please select an option:")
     print("A. List all available foods.")
     print("B. Add additional item to today.")
@@ -83,6 +97,8 @@ while (True):
         break
     elif answer == 'd':
         current_day += 1
+        tracking_data = create_new_row()
+        tracking_data.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
         print("Day advanced to " + str(current_day) + ".")
     elif answer == 'q':
         break
