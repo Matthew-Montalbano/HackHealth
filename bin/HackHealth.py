@@ -1,7 +1,6 @@
 import pandas as pd
-import Core
 import NutritionalConstants
-from Core import LD
+from fuzzywuzzy import fuzz
 
 class HackHealth:
 
@@ -29,11 +28,24 @@ class HackHealth:
     def calculate_nutritional_information(self, food, servings):
         nutritional_information = self.food_data.loc[self.food_data['Food'] == 'apple'].loc[0]
     
-    def collect_data(self):
-        enter_more = True
-        while (enter_more):
-            food_input = input("What food did you eat?")
-            food_actual = self.find_actual_food(food_input)
-            servings = input("How many servings did you eat?")
+    while (True):
+        print("Please select an option:")
+        print("A. List all available foods.")
+        print("B. Add additional item to today.")
+        print("C. See current status.")
+        print("D. Advance to next day.")
+        print("Q. Terminate program.\n")
+        answer = input("Selection: ").lower()
 
-    print(LD("friend", "freinds"))
+        if answer == 'a':
+            break
+        elif answer == 'b':
+            break
+        elif answer == 'c':
+            break
+        elif answer == 'd':
+            break
+        elif answer == 'q':
+            break
+        else:
+            print("Invalid command. Please enter another.\n")
