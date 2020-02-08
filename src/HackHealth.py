@@ -39,9 +39,12 @@ while (True):
     print("D. Advance to next day.")
     print("Q. Terminate program.\n")
     answer = input("Selection: ").lower()
+    print()
 
     if answer == 'a':
-        break
+        for index, name in enumerate(food_data['Food']):
+            print(name)
+        print()
     elif answer == 'b':
         add_item()
     elif answer == 'c':
