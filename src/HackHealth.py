@@ -30,7 +30,6 @@ def calculate_nutritional_information(food, servings):
     nutritional_information = food_data.loc[food_data['Food'] == food].iloc[0][1:-1]
     for index, nutrition in enumerate(nutritional_information):
         nutritional_information[index] = nutrition * servings
-    print('finished calculating nutritional info')
     return nutritional_information
 
 def track_data(food_nutrition_value):
