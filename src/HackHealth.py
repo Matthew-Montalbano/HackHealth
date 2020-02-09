@@ -51,7 +51,7 @@ def create_tracking_file():
             "K": [0],
             "Sugar (g)": [0]
             }
-    df = pd.DataFrame(data).astype('floast64')
+    df = pd.DataFrame(data).astype('float64')
     df.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
     return df
 
@@ -108,41 +108,41 @@ while (True):
         print("\nWarnings:")
         print("-------------------------------------")
         if (NutritionalConstants.CALORIES - tracking_data.iloc[-1][1] > 500):
-            print("CALORIE DEFICIENCY")
+            print("CALORIE DEFICIENCY BY " + str(NutritionalConstants.CALORIES - tracking_data.iloc[-1][1]))
         elif (NutritionalConstants.CALORIES - tracking_data.iloc[-1][1] < -500):
-            print("CALORIE EXCESS")
+            print("CALORIE EXCESS BY " + str(tracking_data.iloc[-1][1] - NutritionalConstants.CALORIES))
         if (NutritionalConstants.CARBOHYDRATES - tracking_data.iloc[-1][2] > 33):
-            print("CARBOHYDRATE DEFICIENCY")
+            print("CARBOHYDRATE DEFICIENCY BY " + str(NutritionalConstants.CARBOHYDRATES - tracking_data.iloc[-1][2]) + "g")
         elif (NutritionalConstants.CARBOHYDRATES - tracking_data.iloc[-1][2] < -33):
-            print("CARBOHYDRATE EXCESS")
+            print("CARBOHYDRATE EXCESS BY " + str(tracking_data.iloc[-1][2] - NutritionalConstants.CARBOHYDRATES) + "g")
         if (NutritionalConstants.TOTAL_FAT - tracking_data.iloc[-1][3] > 15):
-            print("TOTAL FAT DEFICIENCY")
+            print("TOTAL FAT DEFICIENCY BY " + str(NutritionalConstants.TOTAL_FAT - tracking_data.iloc[-1][3]) + "g")
         elif (NutritionalConstants.TOTAL_FAT - tracking_data.iloc[-1][3] < -15):
-            print("TOTAL FAT EXCESS")
+            print("TOTAL FAT EXCESS BY " + str(tracking_data.iloc[-1][3] - NutritionalConstants.TOTAL_FAT) + "g")
         if (NutritionalConstants.PROTEIN - tracking_data.iloc[-1][4] > 14):
-            print("PROTEIN DEFICIENCY")
+            print("PROTEIN DEFICIENCY BY " + str(NutritionalConstants.PROTEIN - tracking_data.iloc[-1][4]) + "g")
         elif (NutritionalConstants.PROTEIN - tracking_data.iloc[-1][4] < -14):
-            print("PROTEIN EXCESS")
-        if (NutritionalConstants.VITAMIN_A - tracking_data.iloc[-1][5] > 75):
-            print("VITAMIN A DEFICIENCY")
-        elif (NutritionalConstants.VITAMIN_A - tracking_data.iloc[-1][5] < -75):
-            print("VITAMIN A EXCESS")
-        if (NutritionalConstants.VITAMIN_C - tracking_data.iloc[-1][6] > 75):
-            print("VITAMIN C DEFICIENCY")
-        elif (NutritionalConstants.VITAMIN_C - tracking_data.iloc[-1][6] < -75):
-            print("VITAMIN C EXCESS")
-        if (NutritionalConstants.VITAMIN_E - tracking_data.iloc[-1][7] > 75):
-            print("VITAMIN E DEFICIENCY")
-        elif (NutritionalConstants.VITAMIN_E - tracking_data.iloc[-1][7] < -75):
-            print("VITAMIN E EXCESS")
-        if (NutritionalConstants.VITAMIN_K - tracking_data.iloc[-1][8] > 75):
-            print("VITAMIN K DEFICIENCY")
-        elif (NutritionalConstants.VITAMIN_K - tracking_data.iloc[-1][8] < -75):
-            print("VITAMIN K EXCESS")
+            print("PROTEIN EXCESS BY " + str(tracking_data.iloc[-1][4] - NutritionalConstants.PROTEIN) + "g")
+        if (NutritionalConstants.VITAMIN_A - tracking_data.iloc[-1][5] > 25):
+            print("VITAMIN A DEFICIENCY BY " + str(NutritionalConstants.VITAMIN_A - tracking_data.iloc[-1][5]) + "%")
+        elif (NutritionalConstants.VITAMIN_A - tracking_data.iloc[-1][5] < -25):
+            print("VITAMIN A EXCESS BY " + str(tracking_data.iloc[-1][5] - NutritionalConstants.VITAMIN_A) + "%")
+        if (NutritionalConstants.VITAMIN_C - tracking_data.iloc[-1][6] > 25):
+            print("VITAMIN C DEFICIENCY BY " + str(NutritionalConstants.VITAMIN_C - tracking_data.iloc[-1][6]) + "%")
+        elif (NutritionalConstants.VITAMIN_C - tracking_data.iloc[-1][6] < -25):
+            print("VITAMIN C EXCESS BY " + str(tracking_data.iloc[-1][6] - NutritionalConstants.VITAMIN_C) + "%")
+        if (NutritionalConstants.VITAMIN_E - tracking_data.iloc[-1][7] > 25):
+            print("VITAMIN E DEFICIENCY BY " + str(NutritionalConstants.VITAMIN_E - tracking_data.iloc[-1][7]) + "%")
+        elif (NutritionalConstants.VITAMIN_E - tracking_data.iloc[-1][7] < -25):
+            print("VITAMIN E EXCESS BY " + str(tracking_data.iloc[-1][7] - NutritionalConstants.VITAMIN_E) + "%")
+        if (NutritionalConstants.VITAMIN_K - tracking_data.iloc[-1][8] > 25):
+            print("VITAMIN K DEFICIENCY BY " + str(NutritionalConstants.VITAMIN_K - tracking_data.iloc[-1][8]) + "%")
+        elif (NutritionalConstants.VITAMIN_K - tracking_data.iloc[-1][8] < -25):
+            print("VITAMIN K EXCESS BY " + str(tracking_data.iloc[-1][8] - NutritionalConstants.VITAMIN_K) + "%")
         if (NutritionalConstants.SUGAR - tracking_data.iloc[-1][9] > 10):
-            print("SUGAR DEFICIENCY")
+            print("SUGAR DEFICIENCY BY " + str(NutritionalConstants.SUGAR - tracking_data.iloc[-1][9]) + "g")
         elif (NutritionalConstants.SUGAR - tracking_data.iloc[-1][9] < -10):
-            print("SUGAR EXCESS")
+            print("SUGAR EXCESS BY " + str(tracking_data.iloc[-1][9] - NutritionalConstants.SUGAR) + "g")
     elif answer == 'd':
         current_day += 1
         tracking_data = create_new_row()
