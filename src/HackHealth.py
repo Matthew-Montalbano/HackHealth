@@ -51,7 +51,7 @@ def create_tracking_file():
             "K": [0],
             "Sugar (g)": [0]
             }
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).astype('floast64')
     df.to_excel("tracking.xlsx", index = False, encoding = "utf-8")
     return df
 
@@ -67,7 +67,7 @@ def create_new_row():
                "K": 0,
                "Sugar (g)": 0
                }
-    return tracking_data.append(new_row, ignore_index=True)
+    return tracking_data.append(new_row, ignore_index=True).astype('float64')
     print(tracking_data)
 
 food_data = pd.read_excel("food_data.xlsx")
