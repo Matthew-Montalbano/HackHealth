@@ -139,9 +139,9 @@ while (True):
             print("VITAMIN K DEFICIENCY")
         elif (NutritionalConstants.VITAMIN_K - tracking_data.iloc[-1][8] < -75):
             print("VITAMIN K EXCESS")
-        if (NutritionalConstants.SUGAR - tracking_data.iloc[-1][9] > 75):
+        if (NutritionalConstants.SUGAR - tracking_data.iloc[-1][9] > 10):
             print("SUGAR DEFICIENCY")
-        elif (NutritionalConstants.SUGAR - tracking_data.iloc[-1][9] < -75):
+        elif (NutritionalConstants.SUGAR - tracking_data.iloc[-1][9] < -10):
             print("SUGAR EXCESS")
     elif answer == 'd':
         current_day += 1
