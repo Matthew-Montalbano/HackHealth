@@ -9,7 +9,7 @@ def add_item():
         food = input("What food would you like to add? ")
         actual_food = find_actual_food(food)
         is_correct_food = (input("Is this the correct food? Enter yes or no: ").lower() == 'yes')
-    servings = int(input("How many servings did you have? "))
+    servings = float(input("How many servings did you have? "))
     food_nutrition_value = calculate_nutritional_information(actual_food, servings)
     track_data(food_nutrition_value)
     print(actual_food + " added!")
